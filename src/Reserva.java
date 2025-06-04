@@ -21,7 +21,21 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return "Reserva ID: " + id + ", Cliente: " + cliente.getNombre() + ", Fecha: " + fecha;
+        StringBuilder sb = new StringBuilder();
+        sb.append("Reserva ID: ").append(id)
+                .append(", Cliente: ").append(cliente.getNombre())
+                .append(", Fecha: ").append(fecha)
+                .append(", Habitaciones: [");
+
+        for (int i = 0; i < habitaciones.size(); i++) {
+            sb.append(habitaciones.get(i).getNumero());
+            if (i < habitaciones.size() - 1) {
+                sb.append(", ");
+            }
+        }
+        sb.append("]");
+        return sb.toString();
     }
+
 }
 

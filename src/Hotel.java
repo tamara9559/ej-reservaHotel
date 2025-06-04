@@ -21,17 +21,31 @@ public class Hotel {
 
     public Reserva hacerReserva(Cliente cliente, List<Integer> numerosHabitaciones, LocalDate fecha) {
         List<Habitacion> seleccionadas = new ArrayList<>();
+
         for (int num : numerosHabitaciones) {
-            Habitacion hab = habitaciones.get(num - 1);
-            if (hab.estaDisponible()) {
-                hab.setDisponible(false);
-                seleccionadas.add(hab);
+            if (num < 1 || num > habitaciones.size()) {
+                System.out.println("La habitación " + num + " no existe.");
+                return null;
             }
+
+            Habitacion hab = habitaciones.get(num - 1);
+            if (!hab.estaDisponible()) {
+                System.out.println("Error: La habitación " + num + " ya está reservada.");
+                return null;
+            }
+            seleccionadas.add(hab);
         }
+
+        // Marcar habitaciones como ocupadas
+        for (Habitacion h : seleccionadas) {
+            h.setDisponible(false);
+        }
+
         Reserva reserva = new Reserva(cliente, seleccionadas, fecha);
         reservas.add(reserva);
         return reserva;
     }
+
 
     public boolean cambiarFechaReserva(String id, LocalDate nuevaFecha) {
         for (Reserva r : reservas) {
