@@ -2,6 +2,7 @@ package reservas;
 
 import clientes.Cliente;
 import habitaciones.Habitacion;
+import pagos.Pago;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,18 +13,28 @@ public class Reserva {
     protected Cliente cliente;
     protected List<Habitacion> habitaciones;
     protected LocalDate fecha;
+    protected Pago pago;
 
 
-    public Reserva(Cliente cliente, List<Habitacion> habitaciones, LocalDate fecha) {
+    public Reserva(Cliente cliente, List<Habitacion> habitaciones, LocalDate fecha, Pago pago) {
         this.id = UUID.randomUUID().toString();
         this.cliente = cliente;
         this.habitaciones = habitaciones;
         this.fecha = fecha;
+        this.pago = pago;
     }
 
     public String getId() { return id; }
     public LocalDate getFecha() { return fecha; }
     public void setFecha(LocalDate fecha) { this.fecha = fecha; }
+
+    public boolean procesarPago(double monto) {
+        if (pago != null) {
+            return pago.procesarPago(monto);
+        }
+        System.out.println("No se ha indicado método de pago.");
+        return false;
+    }
 
     @Override
     public String toString() {

@@ -3,6 +3,7 @@ package reservas;
 import clientes.Cliente;
 import habitaciones.Habitacion;
 import habitaciones.InventarioHabitaciones;
+import pagos.Pago;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class GestorReservas {
         this.inventario = inventario;
     }
 
-    public Reserva hacerReserva(Cliente cliente, List<Integer> numeros, LocalDate fecha) {
+    public Reserva hacerReserva(Cliente cliente, List<Integer> numeros, LocalDate fecha, Pago pago) {
         List<Habitacion> seleccionadas = new ArrayList<>();
 
         for (int num : numeros) {
@@ -34,7 +35,7 @@ public class GestorReservas {
         }
 
         inventario.ocuparHabitaciones(seleccionadas);
-        Reserva reserva = new Reserva(cliente, seleccionadas, fecha);
+        Reserva reserva = new Reserva(cliente, seleccionadas, fecha, pago);
         reservas.add(reserva);
         return reserva;
     }
