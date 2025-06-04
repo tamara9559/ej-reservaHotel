@@ -1,12 +1,18 @@
+package reservas;
+
+import clientes.Cliente;
+import habitaciones.Habitacion;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
 public class Reserva {
-    private String id;
-    private Cliente cliente;
-    private List<Habitacion> habitaciones;
-    private LocalDate fecha;
+    protected String id;
+    protected Cliente cliente;
+    protected List<Habitacion> habitaciones;
+    protected LocalDate fecha;
+
 
     public Reserva(Cliente cliente, List<Habitacion> habitaciones, LocalDate fecha) {
         this.id = UUID.randomUUID().toString();
@@ -36,6 +42,11 @@ public class Reserva {
         sb.append("]");
         return sb.toString();
     }
+
+    public String getTipoReserva() {
+        return "Estándar";
+    }
+
 
 }
 

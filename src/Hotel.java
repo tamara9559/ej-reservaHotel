@@ -1,3 +1,9 @@
+import clientes.Cliente;
+import habitaciones.Habitacion;
+import habitaciones.InventarioHabitaciones;
+import reservas.GestorReservas;
+import reservas.Reserva;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -26,9 +32,6 @@ public class Hotel {
         gestor.listarReservas();
     }
 
-    public int getTotalHabitaciones() {
-        return inventario.totalHabitaciones();
-    }
 }
 
 

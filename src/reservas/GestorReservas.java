@@ -1,3 +1,9 @@
+package reservas;
+
+import clientes.Cliente;
+import habitaciones.Habitacion;
+import habitaciones.InventarioHabitaciones;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
