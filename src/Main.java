@@ -4,7 +4,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Hotel hotel = new Hotel(5); // 5 habitaciones de ejemplo
+        Hotel hotel = new Hotel(5); // usamos la fachada
 
         while (true) {
             System.out.println("\n1. Ver habitaciones disponibles");
@@ -19,7 +19,11 @@ public class Main {
             switch (opcion) {
                 case 1 -> {
                     var disponibles = hotel.mostrarHabitacionesDisponibles();
-                    disponibles.forEach(System.out::println);
+                    if (disponibles.isEmpty()) {
+                        System.out.println("No hay habitaciones disponibles.");
+                    } else {
+                        disponibles.forEach(System.out::println);
+                    }
                 }
                 case 2 -> {
                     System.out.print("Nombre del cliente: ");
@@ -35,7 +39,9 @@ public class Main {
                     LocalDate fecha = LocalDate.parse(sc.nextLine());
 
                     Reserva reserva = hotel.hacerReserva(cliente, numeros, fecha);
-                    System.out.println("Reserva creada: " + reserva);
+                    if (reserva != null) {
+                        System.out.println("Reserva creada: " + reserva);
+                    }
                 }
                 case 3 -> {
                     System.out.print("ID de reserva: ");
@@ -55,4 +61,6 @@ public class Main {
         }
     }
 }
+
+
 
