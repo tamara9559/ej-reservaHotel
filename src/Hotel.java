@@ -1,6 +1,7 @@
 import clientes.Cliente;
 import habitaciones.Habitacion;
 import habitaciones.InventarioHabitaciones;
+import pagos.Pago;
 import reservas.GestorReservas;
 import reservas.Reserva;
 
@@ -20,8 +21,8 @@ public class Hotel {
         return inventario.disponibles();
     }
 
-    public Reserva hacerReserva(Cliente cliente, List<Integer> numerosHabitaciones, LocalDate fecha) {
-        return gestor.hacerReserva(cliente, numerosHabitaciones, fecha);
+    public Reserva hacerReserva(Cliente cliente, List<Integer> numerosHabitaciones, LocalDate fecha, Pago pago) {
+        return gestor.hacerReserva(cliente, numerosHabitaciones, fecha, pago);
     }
 
     public boolean cambiarFechaReserva(String id, LocalDate nuevaFecha) {

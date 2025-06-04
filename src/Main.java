@@ -1,4 +1,8 @@
 import clientes.Cliente;
+import pagos.Pago;
+import pagos.PagoCriptomoneda;
+import pagos.PagoEfectivo;
+import pagos.PagoTarjetaCredito;
 import reservas.Reserva;
 
 import java.time.LocalDate;
@@ -41,9 +45,43 @@ public class Main {
                     System.out.print("Fecha (AAAA-MM-DD): ");
                     LocalDate fecha = LocalDate.parse(sc.nextLine());
 
-                    Reserva reserva = hotel.hacerReserva(cliente, numeros, fecha);
-                    if (reserva != null) {
-                        System.out.println("Reserva creada: " + reserva);
+                    // Selección de método de pago
+                    System.out.println("Método de pago:");
+                    System.out.println("1. Tarjeta de crédito");
+                    System.out.println("2. Efectivo");
+                    System.out.println("3. Criptomoneda");
+                    System.out.print("Seleccione opción: ");
+                    int pagoOpcion = sc.nextInt();
+                    sc.nextLine();
+
+                    Pago pago = null;
+                    switch (pagoOpcion) {
+                        case 1 -> {
+                            System.out.print("Número de tarjeta: ");
+                            String tarjeta = sc.nextLine();
+                            pago = new PagoTarjetaCredito(tarjeta);
+                        }
+                        case 2 -> pago = new PagoEfectivo();
+                        case 3 -> {
+                            System.out.print("Dirección billetera: ");
+                            String billetera = sc.nextLine();
+                            pago = new PagoCriptomoneda(billetera);
+                        }
+                        default -> System.out.println("Opción de pago no válida.");
+                    }
+
+                    Reserva reserva = null;
+                    if (pago != null) {
+                        reserva = hotel.hacerReserva(cliente, numeros, fecha, pago);
+                        if (reserva != null) {
+                            double monto = 100.0; // Puedes calcular monto real si lo deseas
+                            boolean pagado = reserva.procesarPago(monto);
+                            if (pagado) {
+                                System.out.println("Reserva creada y pagada: " + reserva);
+                            } else {
+                                System.out.println("Error en el pago. Reserva no completada.");
+                            }
+                        }
                     }
                 }
                 case 3 -> {
