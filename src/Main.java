@@ -1,3 +1,6 @@
+import clientes.Cliente;
+import reservas.Reserva;
+
 import java.time.LocalDate;
 import java.util.*;
 
