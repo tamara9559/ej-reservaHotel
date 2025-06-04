@@ -27,6 +27,9 @@ public class Reserva {
     public String getId() { return id; }
     public LocalDate getFecha() { return fecha; }
     public void setFecha(LocalDate fecha) { this.fecha = fecha; }
+    public List<Habitacion> getHabitaciones() {
+        return habitaciones;
+    }
 
     public boolean procesarPago(double monto) {
         if (pago != null) {

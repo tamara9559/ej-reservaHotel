@@ -9,7 +9,11 @@ public class InventarioHabitaciones {
     public InventarioHabitaciones(int cantidad) {
         habitaciones = new ArrayList<>();
         for (int i = 1; i <= cantidad; i++) {
-            habitaciones.add(new Habitacion(i));
+            if (i == cantidad) {
+                habitaciones.add(new SuiteHabitacion(i)); // La última es suite
+            } else {
+                habitaciones.add(new Habitacion(i));
+            }
         }
     }
 

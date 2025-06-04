@@ -4,6 +4,8 @@ import pagos.PagoCriptomoneda;
 import pagos.PagoEfectivo;
 import pagos.PagoTarjetaCredito;
 import reservas.Reserva;
+import habitaciones.Minibar;
+import habitaciones.Jacuzzi;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -29,7 +31,17 @@ public class Main {
                     if (disponibles.isEmpty()) {
                         System.out.println("No hay habitaciones disponibles.");
                     } else {
-                        disponibles.forEach(System.out::println);
+                        for (var habitacion : disponibles) {
+                            System.out.println(habitacion);
+                            // Si la habitación tiene minibar
+                            if (habitacion instanceof Minibar) {
+                                System.out.println("  - Esta habitación incluye minibar.");
+                            }
+                            // Si la habitación tiene jacuzzi
+                            if (habitacion instanceof Jacuzzi) {
+                                System.out.println("  - Esta habitación incluye jacuzzi.");
+                            }
+                        }
                     }
                 }
                 case 2 -> {
@@ -78,6 +90,15 @@ public class Main {
                             boolean pagado = reserva.procesarPago(monto);
                             if (pagado) {
                                 System.out.println("Reserva creada y pagada: " + reserva);
+                                // Acciones especiales para habitaciones reservadas
+                                for (var hab : reserva.getHabitaciones()) {
+                                    if (hab instanceof Minibar minibar) {
+                                        minibar.reponerMinibar();
+                                    }
+                                    if (hab instanceof Jacuzzi jacuzzi) {
+                                        jacuzzi.limpiarJacuzzi();
+                                    }
+                                }
                             } else {
                                 System.out.println("Error en el pago. Reserva no completada.");
                             }
