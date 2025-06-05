@@ -8,8 +8,4 @@ public class PagoEfectivo implements Pago {
         return true;
     }
 
-    @Override
-    public String getDescripcion() {
-        return "Pago en efectivo";
-    }
 }

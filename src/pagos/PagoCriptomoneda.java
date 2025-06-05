@@ -13,8 +13,4 @@ public class PagoCriptomoneda implements Pago {
         return true;
     }
 
-    @Override
-    public String getDescripcion() {
-        return "Pago con criptomoneda";
-    }
-}
+   }

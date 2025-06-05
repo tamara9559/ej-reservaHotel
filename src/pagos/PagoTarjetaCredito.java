@@ -14,8 +14,4 @@ public class PagoTarjetaCredito implements Pago {
         return true;
     }
 
-    @Override
-    public String getDescripcion() {
-        return "Pago con tarjeta de crédito";
-    }
-}
+   }
