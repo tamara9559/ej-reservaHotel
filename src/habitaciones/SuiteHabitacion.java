@@ -14,10 +14,6 @@ public class SuiteHabitacion extends Habitacion implements Minibar, Jacuzzi {
         System.out.println("Minibar repuesto en la suite " + getNumero());
     }
 
-    @Override
-    public boolean tieneMinibar() {
-        return true;
-    }
 
     @Override
     public void limpiarJacuzzi() {
@@ -25,10 +21,6 @@ public class SuiteHabitacion extends Habitacion implements Minibar, Jacuzzi {
         System.out.println("Jacuzzi limpio en la suite " + getNumero());
     }
 
-    @Override
-    public boolean tieneJacuzzi() {
-        return true;
-    }
 
     @Override
     public String toString() {
